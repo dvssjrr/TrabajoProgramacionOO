@@ -1,8 +1,4 @@
 from datos import obtener_lista_objetos, crear_objeto, modificar_objeto
-from iu import (
-    str_isbn_libro, str_titulo_libro, str_año_publicacion_libro, 
-    str_nuevo_isbn_libro, str_nuevo_titulo_libro, str_nuevo_año_publicacion_libro
-)
 from modelos import Libro
 from prettytable import PrettyTable
 
@@ -14,9 +10,9 @@ def obtener_listado_libros():
     
     if lista_libros:
         for libro in lista_libros:
-            estado = 'Si' if libro.habilitado == 1 else 'No'
+            estado = 'Si' if getattr(libro, 'habilitado', 1) == 1 else 'No'
             tabla_libros.add_row(
-                [libro.id, libro.isbn, libro.titulo, libro.año_publicacion, libro.copias_disponibles, estado]
+                [libro.id, libro.isbn, libro.titulo, getattr(libro, 'anio_publicacion', ''), libro.copias_disponibles, estado]
             )
     
     print(tabla_libros)
@@ -32,19 +28,19 @@ def obtener_libro_por_isbn(isbn: str):
 
 
 def crear_libro():
-    isbn = str_isbn_libro()
+    isbn = input('Ingrese ISBN del libro (vacío para cancelar): ').strip()
     
     if isbn != '':
         libro_existente = obtener_libro_por_isbn(isbn)
         
         if libro_existente is None:
-            titulo = str_titulo_libro()
-            año_publicacion = str_año_publicacion_libro()
+            titulo = input('Ingrese titulo del libro: ').strip()
+            anio_publicacion = input('Ingrese año de publicación (YYYY): ').strip()
             
             nuevo_libro = Libro(
                 isbn=isbn,
                 titulo=titulo.title(),
-                año_publicacion=año_publicacion,
+                anio_publicacion=anio_publicacion,
             )
             crear_objeto(nuevo_libro)
             print(f'Libro "{titulo.title()}" (ISBN: {isbn}) creado con exito.')
@@ -52,15 +48,15 @@ def crear_libro():
             print('Este libro ya EXISTE (ISBN duplicado).')
 
 def modificar_libro():
-    isbn = str_isbn_libro()
+    isbn = input('Ingrese ISBN del libro a modificar (vacío para cancelar): ').strip()
     
     if isbn != '':
         libro = obtener_libro_por_isbn(isbn)
         
         if libro:
-            modificar_isbn = str_nuevo_isbn_libro()
-            modificar_titulo = str_nuevo_titulo_libro()
-            modificar_anio = str_nuevo_año_publicacion_libro()
+            modificar_isbn = input('Nuevo ISBN (vacío para mantener): ').strip()
+            modificar_titulo = input('Nuevo titulo (vacío para mantener): ').strip()
+            modificar_anio = input('Nuevo año de publicación (YYYY) (vacío para mantener): ').strip()
             
             if modificar_isbn != '':
                 libro.isbn = modificar_isbn

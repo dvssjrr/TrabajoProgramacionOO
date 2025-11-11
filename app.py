@@ -1,16 +1,7 @@
-from iu import (
-    menu_principal, menu_gestion_libros, menu_gestion_suscripcion, 
-    menu_gestion_clientes, menu_gestion_autores
-)
+from iu import menu_principal, menu_gestion_libros, menu_gestion_suscripcion, menu_gestion_clientes, menu_gestion_autores
 from negocio import (
-    # Libros
     obtener_listado_libros, crear_libro, modificar_libro, 
-    # Suscripcion
     obtener_listado_tipos_suscripcion, crear_tipo_suscripcion, modificar_tipo_suscripcion,
-    # Clientes
-    # obtener_listado_clientes, crear_cliente, modificar_cliente, eliminar_cliente,
-    # Autores
-    # obtener_listado_autores, crear_autor, modificar_autor, eliminar_autor
 )
 from auxiliares import nombre_aplicacion, numero_version
 

@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from .base import Base
 
-class declarative_base:
+class Libro(Base):
     __tablename__ = 'libros'
     
     id = Column(Integer, primary_key=True)
@@ -12,3 +12,7 @@ class declarative_base:
     editorial = Column(String(100), nullable=True)
     copias_disponibles = Column(Integer, default=0, nullable=False)
     habilitado = Column(Integer, default=1, nullable=False)
+
+    # relaciones opcionales (asegurar que existan los modelos relacionados)
+    autores = relationship("Autor", secondary="libro_autor", back_populates="libros")
+    generos = relationship("Genero", secondary="libro_genero", back_populates="libros")

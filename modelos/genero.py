@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from .base import Base
 
-class declarative_base:
+class Genero(Base):
     __tablename__ = 'generos'
     
     id = Column(Integer, primary_key=True)
