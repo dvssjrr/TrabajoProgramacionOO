@@ -14,3 +14,4 @@ def eliminar_objeto(objeto):
         print(f"Error al eliminar el objeto: {e}")
     finally:
         sesion.close()
+
