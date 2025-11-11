@@ -1,6 +1,7 @@
-from sqlalchemy import Column, DateTime, ForeignKey, Integer
-from sqlalchemy.orm import relationship
-from .base import Base
+from sqlalchemy import Column, Integer, DateTime, ForeignKey, Integer
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 class Descarga(Base):
     __tablename__ = 'descarga'
@@ -11,5 +12,3 @@ class Descarga(Base):
     id_cliente = Column(Integer, ForeignKey('clientes.id'), nullable=False)
     id_libro = Column(Integer, ForeignKey('libros.id'), nullable=False)
 
-    cliente = relationship("Cliente", back_populates="descargas")
-    libro = relationship("Libro")

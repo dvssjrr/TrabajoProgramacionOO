@@ -2,7 +2,6 @@ separador_menu = '===================================='
 opcion_volver = '[0] Volver'
 
 def menu_principal():
-    separador_menu = '=' * 30
     print()
     print(separador_menu)
     print('Menú Principal')
@@ -16,7 +15,6 @@ def menu_principal():
 
 
 def menu_gestion_libros():
-    separador_menu = '=' * 30
     print()
     print(separador_menu)
     print('Gestión de Libros')
@@ -30,7 +28,6 @@ def menu_gestion_libros():
 
 
 def menu_gestion_suscripcion():
-    separador_menu = '=' * 30
     print()
     print(separador_menu)
     print('Gestión de Suscripción')
@@ -43,7 +40,6 @@ def menu_gestion_suscripcion():
 
 
 def menu_gestion_clientes():
-    separador_menu = '=' * 30
     print()
     print(separador_menu)
     print('Gestión de Clientes')
@@ -56,7 +52,6 @@ def menu_gestion_clientes():
 
 
 def menu_gestion_autores():
-    separador_menu = '=' * 30
     print()
     print(separador_menu)
     print('Gestión de Autores')

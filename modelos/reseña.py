@@ -1,6 +1,7 @@
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, Text
-from sqlalchemy.orm import relationship
-from .base import Base
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 class Resena(Base):
     __tablename__ = 'reseña'
@@ -12,6 +13,3 @@ class Resena(Base):
 
     id_cliente = Column(Integer, ForeignKey('clientes.id'), nullable=False)
     id_libro = Column(Integer, ForeignKey('libros.id'), nullable=False)
-
-    cliente = relationship("Cliente", back_populates="resenas")
-    libro = relationship("Libro")

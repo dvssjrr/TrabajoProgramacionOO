@@ -2,7 +2,6 @@ from prettytable import PrettyTable
 from datos import obtener_lista_objetos, crear_objeto, modificar_objeto
 
 def obtener_listado_tipos_suscripcion():
-    # Si existe el modelo TipoSuscripcion en modelos, intentar listarlo; si no, informar.
     try:
         from modelos import TipoSuscripcion
     except Exception:
@@ -54,12 +53,11 @@ def crear_tipo_suscripcion():
                     dias_prestamo=int(dias_prestamo) if dias_prestamo else None
                 )
                 crear_objeto(nuevo_tipo)
-                print(f'✅ Tipo de Suscripción "{nombre_normalizado}" creado con éxito.')
+                print(f'Tipo de Suscripción "{nombre_normalizado}" creado con éxito.')
             except Exception:
-                # Si no existe el modelo, no fallar: informar al usuario
-                print(f'❌ No es posible crear el plan: modelo TipoSuscripcion no definido en el proyecto.')
+                print(f'No es posible crear el plan: modelo TipoSuscripcion no definido en el proyecto.')
         else:
-            print(f'❌ Este plan de suscripción "{nombre_normalizado}" ya EXISTE.')
+            print(f'Este plan de suscripción "{nombre_normalizado}" ya EXISTE.')
     else:
         print('Operación cancelada: El nombre del plan no puede estar vacío.')
 
@@ -73,7 +71,7 @@ def modificar_tipo_suscripcion():
     tipo = obtener_tipo_suscripcion_nombre(nombre_actual)
     
     if tipo is None:
-        print(f'❌ No se ha encontrado el plan de suscripción con nombre "{nombre_actual}".')
+        print(f'No se ha encontrado el plan de suscripción con nombre "{nombre_actual}".')
         return
     
     print(f'Modificando plan: "{tipo.nombre_suscripcion}"')

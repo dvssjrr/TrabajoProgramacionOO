@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
-from .base import Base
+from sqlalchemy import Column, String, Integer
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 class Usuario(Base):
     __tablename__ = 'usuario'
@@ -11,4 +12,3 @@ class Usuario(Base):
     es_admin = Column(Integer, default=0, nullable=False)
     habilitado = Column(Integer, default=1, nullable=False)
 
-    prestamos_registrados = relationship("Prestamo", back_populates="bibliotecario")

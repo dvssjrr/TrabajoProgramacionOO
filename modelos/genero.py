@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
-from .base import Base
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 class Genero(Base):
     __tablename__ = 'generos'
@@ -8,5 +9,3 @@ class Genero(Base):
     id = Column(Integer, primary_key=True)
     nombre_genero = Column(String(50), nullable=False, unique=True)
     descripcion = Column(String(255), nullable=True)
-
-    libros = relationship("Libro", secondary="libro_genero", back_populates="libros")

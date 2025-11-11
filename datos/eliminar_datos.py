@@ -1,10 +1,10 @@
 from datos.conexion import Session
 from sqlalchemy import func
 
+sesion = Session()
+
 def eliminar_objeto(objeto):
-	sesion = Session()
 	try:
-		# si el objeto no está en la sesión, unirlo
 		obj = sesion.merge(objeto)
 		sesion.delete(obj)
 		sesion.commit()

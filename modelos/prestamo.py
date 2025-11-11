@@ -1,6 +1,7 @@
 from sqlalchemy import Column, DateTime, Float, ForeignKey, Integer
-from .base import Base
-from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
 
 class Prestamo(Base):
     __tablename__ = 'prestamos'
@@ -15,7 +16,3 @@ class Prestamo(Base):
     id_cliente = Column(Integer, ForeignKey('clientes.id'), nullable=False)
     id_libro = Column(Integer, ForeignKey('libros.id'), nullable=False)
     id_bibliotecario = Column(Integer, ForeignKey('usuario.id'), nullable=True)
-
-    cliente = relationship("Cliente", back_populates="prestamos")
-    libro = relationship("Libro")
-    bibliotecario = relationship("Usuario", back_populates="prestamos_registrados")
