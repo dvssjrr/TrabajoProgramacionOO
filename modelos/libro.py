@@ -13,6 +13,5 @@ class Libro(Base):
     copias_disponibles = Column(Integer, default=0, nullable=False)
     habilitado = Column(Integer, default=1, nullable=False)
 
-    # relaciones opcionales (asegurar que existan los modelos relacionados)
     autores = relationship("Autor", secondary="libro_autor", back_populates="libros")
     generos = relationship("Genero", secondary="libro_genero", back_populates="libros")

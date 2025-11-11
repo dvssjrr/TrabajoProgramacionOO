@@ -1,5 +1,3 @@
-# --- Funciones para solicitar datos de SUSCRIPCIÓN ---
-
 def str_nombre_suscripcion():
     nombre = input('Ingrese nombre del tipo de suscripción: ')
     return nombre.title()
@@ -7,8 +5,6 @@ def str_nombre_suscripcion():
 def str_limite_libros():
     limite = input('Ingrese límite de libros prestables: ')
     return limite
-
-# --- Funciones para solicitar datos de CLIENTES ---
 
 def datos_cliente():
     nombre = input('Ingrese nombre completo del cliente: ')
@@ -19,8 +15,6 @@ def datos_cliente():
 def str_id_cliente():
     id_cliente = input('Ingrese ID o Rut del Cliente a gestionar: ')
     return id_cliente
-
-# --- Funciones adicionales para Libros/Autores ---
 
 def str_id_autor():
     id_autor = input('Ingrese ID del Autor responsable: ')

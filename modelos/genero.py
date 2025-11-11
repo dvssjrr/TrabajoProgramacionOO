@@ -9,4 +9,4 @@ class Genero(Base):
     nombre_genero = Column(String(50), nullable=False, unique=True)
     descripcion = Column(String(255), nullable=True)
 
-    libros = relationship("Libro", secondary="libro_genero", back_populates="generos")
+    libros = relationship("Libro", secondary="libro_genero", back_populates="libros")
