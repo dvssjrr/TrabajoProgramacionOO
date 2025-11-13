@@ -1,4 +1,4 @@
 # Proyecto : Biblioteca Digital
 # Autor: Damian Bravo, Alexander Lagos
 
-numero_version = '1.2.0'
+numero_version = '2.0.0'
