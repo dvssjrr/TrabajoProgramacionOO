@@ -1,8 +1,8 @@
 from auxiliares import nombre_aplicacion, numero_version
 from iu import menu_principal, menu_gestion_libros, menu_gestion_suscripcion, menu_gestion_clientes, menu_gestion_autores
 from negocio import (
-    obtener_listado_libros, crear_libro, modificar_libro,
-    obtener_listado_tipos_suscripcion, crear_tipo_suscripcion, modificar_tipo_suscripcion,
+    obtener_listado_libros, crear_libro, modificar_libro, eliminar_libro,
+    obtener_listado_tipos_suscripcion, crear_tipo_suscripcion, modificar_tipo_suscripcion, eliminar_tipo_suscripcion
 )
 
 seleccionar_opcion = 'Seleccione su opcion [0-4]: '
@@ -25,7 +25,7 @@ try:
                 elif opcion_libro == '2':
                     modificar_libro()
                 elif opcion_libro == '3':
-                    print('Eliminar Libro (Pendiente)')
+                    eliminar_libro()
                 elif opcion_libro == '4':
                     obtener_listado_libros()
                 elif opcion_libro == '0':
@@ -42,7 +42,7 @@ try:
                 elif opcion_suscripcion == '2':
                     modificar_tipo_suscripcion()
                 elif opcion_suscripcion == '3':
-                    print('Eliminar Suscripcion (Pendiente)')
+                    eliminar_tipo_suscripcion()
                 elif opcion_suscripcion == '4':
                     obtener_listado_tipos_suscripcion()
                 elif opcion_suscripcion == '0':
