@@ -1,4 +1,4 @@
-from .negociolibro import obtener_listado_libros, crear_libro, modificar_libro
-from .negociosuscricion import obtener_listado_tipos_suscripcion, crear_tipo_suscripcion, modificar_tipo_suscripcion
+from .negociolibro import obtener_listado_libros, crear_libro, modificar_libro, eliminar_libro
+from .negociosuscricion import obtener_listado_tipos_suscripcion, crear_tipo_suscripcion, modificar_tipo_suscripcion, eliminar_tipo_suscripcion
 
 
