@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from datos import obtener_lista_objetos, crear_objeto, modificar_objeto
+from datos import obtener_lista_objetos, crear_objeto, modificar_objeto, eliminar_objeto
 
 def obtener_listado_tipos_suscripcion():
     try:
@@ -44,13 +44,14 @@ def crear_tipo_suscripcion():
         if tipo_existente is None:
             limite_libros = input('Ingrese límite de libros: ').strip()
             dias_prestamo = input('Ingrese días de préstamo: ').strip()
-            
+            costo_mensual = input('Ingrese costo mensual: ').strip()
             try:
                 from modelos import TipoSuscripcion
                 nuevo_tipo = TipoSuscripcion(
                     nombre_suscripcion=nombre_normalizado,
                     limite_libros=int(limite_libros) if limite_libros else None,
-                    dias_prestamo=int(dias_prestamo) if dias_prestamo else None
+                    dias_prestamo=int(dias_prestamo) if dias_prestamo else None,
+                    costo_mensual=float(costo_mensual) if costo_mensual else 0.0
                 )
                 crear_objeto(nuevo_tipo)
                 print(f'Tipo de Suscripción "{nombre_normalizado}" creado con éxito.')
@@ -98,3 +99,28 @@ def modificar_tipo_suscripcion():
         print('Plan modificado con éxito.')
     except Exception:
         print('No fue posible modificar el plan (modelo o persistencia no disponible).')
+
+def eliminar_tipo_suscripcion():
+    nombre = input("Ingrese el nombre del plan a eliminar (vacío para cancelar): ").strip()
+
+    if not nombre:
+        print("Operación cancelada.")
+        return
+
+    tipo = obtener_tipo_suscripcion_nombre(nombre)
+
+    if tipo is None:
+        print(f'No se encontró un plan con el nombre "{nombre}".')
+        return
+
+    print(f'Plan encontrado: {tipo.nombre_suscripcion}')
+    confirmacion = input("¿Está seguro que desea ELIMINAR este plan? (s/n): ").strip().lower()
+
+    if confirmacion == 's':
+        try:
+            eliminar_objeto(tipo)
+            print(f'El plan "{tipo.nombre_suscripcion}" ha sido eliminado correctamente.')
+        except Exception as e:
+            print("Error al eliminar el plan:", e)
+    else:
+        print("Operación cancelada.")
