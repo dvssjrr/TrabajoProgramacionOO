@@ -9,3 +9,4 @@ from .prestamo import Prestamo
 from .reseña import Resena
 from .suscripcion import Suscripcion
 from .usuario import Usuario
+from .tipo_suscripcion import TipoSuscripcion
