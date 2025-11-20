@@ -1,7 +1,7 @@
-from datos import obtener_lista_objetos, crear_objeto, modificar_objeto
+from datos import obtener_lista_objetos, crear_objeto, modificar_objeto, eliminar_objeto
 from modelos import Libro
 from prettytable import PrettyTable
-
+from datos.conexion import Session
 
 def obtener_listado_libros():
     tabla_libros = PrettyTable()
@@ -36,11 +36,15 @@ def crear_libro():
         if libro_existente is None:
             titulo = input('Ingrese titulo del libro: ').strip()
             anio_publicacion = input('Ingrese año de publicación (YYYY): ').strip()
-            
+            editorial = input("Editorial: ")
+            copias = int(input("Copias disponibles: "))
+
             nuevo_libro = Libro(
                 isbn=isbn,
                 titulo=titulo.title(),
                 anio_publicacion=anio_publicacion,
+                editorial=editorial,
+                copias_disponibles=copias
             )
             crear_objeto(nuevo_libro)
             print(f'Libro "{titulo.title()}" (ISBN: {isbn}) creado con exito.')
@@ -72,3 +76,34 @@ def modificar_libro():
             
         else:
             print('No se ha encontrado el libro con ese ISBN.')
+
+def eliminar_libro():
+    from modelos import Libro
+    from datos import eliminar_objeto, obtener_lista_objetos
+
+    id_libro = input("Ingrese el ID del libro a eliminar (vacío para cancelar): ").strip()
+
+    if not id_libro:
+        print("Operación cancelada.")
+        return
+
+    try:
+        id_libro = int(id_libro)
+    except ValueError:
+        print("ID inválido.")
+        return
+
+    libros = obtener_lista_objetos(Libro)
+    libro = next((l for l in libros if l.id == id_libro), None)
+
+    if libro is None:
+        print(f"No existe un libro con ID {id_libro}.")
+        return
+
+    confirm = input(f"¿Eliminar el libro '{libro.titulo}'? (s/n): ").lower()
+
+    if confirm == "s":
+        eliminar_objeto(libro)
+        print("Libro eliminado correctamente.")
+    else:
+        print("Operación cancelada.")
